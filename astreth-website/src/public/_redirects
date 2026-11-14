@@ -1,5 +1,0 @@
-# Redirects (Cloudflare reads this file). Format:  /old-path   /new-path-or-full-URL   status
-# 302 = temporary, 301 = permanent.
-
-# The old site's Volunteer buttons pointed here; for now it sends people to the Discord server.
-/volunteer   https://www.discord.gg/HanHKCFtTd   302
