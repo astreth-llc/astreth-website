@@ -1,0 +1,39 @@
+{
+  "name": "Astreth",
+  "url": "https://www.astreth.com",
+  "tagline": "Connections without constraints",
+  "title_suffix": " — Astreth: Connections without constraints",
+  "default_description": "Astreth is a community of volunteers dedicated working to build a tech company that puts people over profit. Our first mission: build a social media app that benefits society, made by the community, for the community.",
+  "default_share_image": "/assets/img/social-share.jpg",
+  "default_share_image_alt": "Astreth logo on a purple-to-teal starry gradient with the words “People over profit.”",
+  "email": "Help@Astreth.com",
+
+  "links": {
+    "tiktok": "https://www.tiktok.com/@Astreth",
+    "discord": "https://www.discord.gg/HanHKCFtTd",
+    "donate": "https://www.paypal.com/donate/?hosted_button_id=V5LMW65CA2HYN"
+  },
+
+  "forms": {
+    "_help": "Paste a Formspree form URL (https://formspree.io/f/xxxxxxxx) into each field to switch the form on. Leave empty to show the email/Discord fallback instead.",
+    "contact_endpoint": "",
+    "newsletter_endpoint": ""
+  },
+
+  "analytics": {
+    "_help": "Google Analytics 4 measurement ID. Leave empty to turn Google Analytics off (and update the privacy policy).",
+    "ga4_id": "G-KM2FDC2E1W"
+  },
+
+  "userway_account": "5YLc9GrHGw",
+
+  "hero": {
+    "_help": "Optional background video for the homepage hero, e.g. /assets/video/hero.mp4 (keep it under 25 MB). Leave empty to use the starry gradient.",
+    "video": "",
+    "poster": ""
+  },
+
+  "youtube_intro_id": "hePjCqQoosg",
+  "home_post_count": 3,
+  "feed_post_count": 20
+}
