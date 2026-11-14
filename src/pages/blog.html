@@ -1,0 +1,18 @@
+---
+title: "Blog | From Behind the Scenes"
+description: "Explore Astreth's blog for community updates, mission insights, and app development news focused on connection, communication, and shared values."
+---
+
+<section class="page-title theme-black">
+  <div class="container">
+    <h1 class="section-title section-title--white">BEHIND THE SCENES</h1>
+  </div>
+</section>
+
+<section class="section theme-white" aria-label="Blog posts">
+  <div class="container">
+    {% if has_posts %}<div class="post-list">
+      {{{ blog_list }}}
+    </div>{% else %}<p>No posts yet. Check back soon!</p>{% endif %}
+  </div>
+</section>

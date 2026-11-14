@@ -1,0 +1,20 @@
+---
+title: "Contact Us | Connect with Us Today"
+description: "Reach out to Astreth for community-driven connections and app development. Contact us with questions or for more information about our mission and services."
+---
+
+<section class="section theme-white" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact">
+      <div class="contact__intro">
+        <img class="contact__art" src="/assets/img/sparkles-gradient.webp" alt="" width="900" height="900">
+        <h1 class="section-title" id="contact-title">CONTACT US</h1>
+        <p>Have a question or an idea? We’d love to hear from you.</p>
+        {% if site.forms.contact_endpoint %}<p class="contact__alt">Prefer email? Write to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>{% endif %}
+      </div>
+      <div class="contact__form">
+        {{{ contact_form }}}
+      </div>
+    </div>
+  </div>
+</section>

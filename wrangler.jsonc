@@ -1,0 +1,11 @@
+// Cloudflare Workers settings. The site is plain static files built into ./dist.
+// Build command: npm run build    Deploy command: npx wrangler deploy
+{
+  "name": "astreth-website",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,25 @@
+<header class="site-header {{ page.header_class }}">
+  <div class="site-header__bar">
+    <a class="site-header__logo" href="/">
+      <img src="/assets/img/astreth-logo.webp" alt="Astreth home" width="1500" height="387">
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+      <span class="menu-toggle__lines" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <div class="site-menu" id="site-menu" data-menu>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a href="/about-us" data-nav>About Us</a></li>
+          <li><a href="/blog" data-nav>Blog</a></li>
+          <li><a href="/contact-us" data-nav>Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="site-menu__actions">
+        <a class="social-icon" href="{{ site.links.tiktok }}" target="_blank" rel="noopener">{% include "icon-tiktok.svg" %}<span class="visually-hidden">Astreth on TikTok</span></a>
+        <a class="social-icon" href="{{ site.links.discord }}" target="_blank" rel="noopener">{% include "icon-discord.svg" %}<span class="visually-hidden">Join Astreth on Discord</span></a>
+        <a class="button button--tertiary site-menu__donate" href="{{ site.links.donate }}" target="_blank" rel="noopener">Donate</a>
+      </div>
+    </div>
+  </div>
+</header>
