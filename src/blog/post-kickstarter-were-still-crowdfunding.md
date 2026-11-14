@@ -27,6 +27,8 @@ Though our Kickstarter campaign did not reach its goal, we are still accepting [
 
 Be on the lookout here for a more expansive Donation page coming soon, so you can feel like you’re behind the scenes on where the project is at, where it’s going, and how we’re going to get there.
 
+*Update: our [Pebbler campaign page](/pebbler) is now live, with the full plan and backer tiers.*
+
 Thank you for everyone’s belief in this mission, in us, and for how you’re letting your voice be heard so that this can represent you—our wonderful community.
 
 Slow and steady wins the race, Pebblers!
