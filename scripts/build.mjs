@@ -276,6 +276,55 @@ function newsletterForm(site) {
 <p class="newsletter__privacy">We respect your privacy.</p>`;
 }
 
+// ----- Crowdfunding numbers (src/site.json → "campaign") -----
+// raised is the total collected. If reserve_percent and/or reserve_fixed are set, that share is
+// held back for taxes and basic business expenses, and the rest counts toward the next micro-goal.
+function campaignNumbers(site) {
+  const c = site.campaign || {};
+  const num = (value) => Number(String(value == null ? '' : value).replace(/[^0-9.]/g, '')) || 0;
+  const money = (value) => Math.round(value).toLocaleString('en-US');
+  const raised = num(c.raised);
+  const goal = num(c.goal_amount);
+  const percent = c.reserve_percent == null || c.reserve_percent === '' ? null : num(c.reserve_percent);
+  const fixed = num(c.reserve_fixed);
+  const hasReserve = percent !== null || fixed > 0;
+  if (percent !== null && percent > 100) warn(`src/site.json: campaign.reserve_percent is ${percent}; it should be between 0 and 100`);
+  // Whole dollars, and the two parts always add back up to the total shown.
+  const total = Math.round(raised);
+  const reserved = Math.min(total, Math.round(raised * (percent || 0) / 100 + fixed));
+  const toward = total - reserved;
+  return {
+    raised: money(total), goal: money(goal), reserved: money(reserved), toward: money(toward),
+    towardValue: Math.round(toward), goalValue: Math.round(goal),
+    percent, hasReserve, showProgress: hasReserve && goal > 0,
+    barWidth: goal > 0 ? Math.min(100, Math.round((toward / goal) * 1000) / 10) : 0,
+    asOf: c.as_of || '', goalName: c.goal_name || 'our next micro-goal', goalDescription: c.goal_description || '',
+  };
+}
+
+function campaignHeroLine(site) {
+  const n = campaignNumbers(site);
+  const asOf = n.asOf ? ` <span class="hero__asof">as of ${escapeHtml(n.asOf)}</span>` : '';
+  const text = n.showProgress
+    ? `<strong>$${n.toward}</strong> of $${n.goal} toward ${escapeHtml(n.goalName)}`
+    : `<strong>$${n.raised}</strong> raised so far`;
+  return `<p class="hero__raised"><a href="/pebbler#funding">${text}</a>${asOf}</p>`;
+}
+
+function campaignSummary(site) {
+  const n = campaignNumbers(site);
+  const asOf = n.asOf ? ` <span class="back-strip__asof">as of ${escapeHtml(n.asOf)}</span>` : '';
+  const goalText = `$${n.goal} for ${escapeHtml(n.goalDescription || n.goalName)}`;
+  if (!n.showProgress) {
+    return `<p class="back-strip__raised"><strong>$${n.raised}</strong> raised so far${asOf}</p>
+      <p>Each year we set aside the minimum we need for basic business expenses, fees, and taxes. Everything above that goes to our next micro-goal: ${goalText}.</p>`;
+  }
+  const share = n.percent ? ` (${n.percent}%)` : '';
+  return `<p class="back-strip__raised"><strong>$${n.toward}</strong> of $${n.goal} toward ${escapeHtml(n.goalName)}${asOf}</p>
+      <div class="goal-bar" role="progressbar" aria-label="Progress toward ${escapeHtml(n.goalName)}" aria-valuemin="0" aria-valuemax="${n.goalValue}" aria-valuenow="${n.towardValue}"><span style="width: ${n.barWidth}%"></span></div>
+      <p>We’ve raised $${n.raised} in total. We set aside $${n.reserved}${share} for taxes and basic business expenses, and everything else goes to our next micro-goal: ${goalText}.</p>`;
+}
+
 function heroMedia(site) {
   const hero = site.hero || {};
   if (!hero.video) return '';
@@ -500,6 +549,8 @@ async function main() {
     analytics_head: analyticsHead(site),
     userway: userwayScript(site),
     hero_media: heroMedia(site),
+    campaign_hero_line: campaignHeroLine(site),
+    campaign_summary: campaignSummary(site),
     youtube_intro: youtubeEmbed(site),
     contact_form: contactForm(site),
     newsletter_form: newsletterForm(site),
