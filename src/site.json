@@ -21,8 +21,14 @@
   },
 
   "campaign": {
-    "_help": "Amount raised so far, shown on the homepage and the Pebbler page. Type it with commas and no dollar sign, e.g. 1,395.",
-    "raised": "1,395"
+    "_help": "Crowdfunding numbers for the homepage and the Pebbler page. raised: total collected so far. as_of: the month that total was last updated. goal_amount: cost of the next micro-goal. reserve_percent: share of every dollar held back for taxes and business expenses (for example 30), and reserve_fixed: a flat dollar amount held back; set either one and the pages show a progress bar of what is left toward the micro-goal. Leave both empty to show only the total raised. Type amounts with commas and no dollar sign.",
+    "raised": "1,395",
+    "as_of": "November 2026",
+    "goal_amount": "2,000",
+    "goal_name": "our co-op legal review",
+    "goal_description": "a lawyer’s review of our co-op contracts, so we can start offering co-op membership",
+    "reserve_percent": "",
+    "reserve_fixed": ""
   },
 
   "analytics": {
