@@ -818,3 +818,12 @@ body.menu-open { overflow: hidden; }
 .to-top { position: fixed; right: 60px; bottom: 13px; z-index: 20; display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--white); border-radius: 50%; background: var(--dark-accent); color: var(--white); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); }
 .to-top:hover { background: var(--accent); }
 .to-top[hidden] { display: none; }
+
+/* Homepage hero: text and buttons beside the campaign video */
+.hero__inner--split { grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+@media (min-width: 900px) { .hero__inner--split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.hero__lead { max-width: 34rem; margin: 0.7em 0 0; font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.5rem); line-height: 1.4; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 0; }
+.hero__raised { margin: 22px 0 0; }
+.hero__raised strong { font-family: var(--font-heading); font-size: var(--fs-h3); font-weight: 400; line-height: 1; }
+.hero__media .hero-quote { margin-top: 22px; }
