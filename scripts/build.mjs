@@ -257,6 +257,8 @@ function contactForm(site) {
 
 function newsletterForm(site) {
   const endpoint = site.forms && site.forms.newsletter_endpoint;
+  // Kit (kit.com) expects the address in a field called email_address; Formspree uses email.
+  const emailField = /^https:\/\/app\.(kit|convertkit)\.com\/forms\//.test(endpoint || '') ? 'email_address' : 'email';
   if (!endpoint) {
     return `<p class="newsletter__text">Get our latest news and updates in our Discord community.</p>
 <a class="button button--block" href="${escapeHtml(site.links.discord)}">Join our Discord</a>`;
@@ -266,7 +268,7 @@ function newsletterForm(site) {
   <input type="hidden" name="_subject" value="New newsletter sign-up (astreth.com)">
   <input type="hidden" name="form" value="newsletter">
   <label class="visually-hidden" for="newsletter-email">Email address</label>
-  <input class="newsletter__input" id="newsletter-email" type="email" name="email" placeholder="Email Address" autocomplete="email" required>
+  <input class="newsletter__input" id="newsletter-email" type="email" name="${emailField}" placeholder="Email Address" autocomplete="email" required>
   ${honeypot}
   <button class="button button--block" type="submit">Sign Up</button>
   <p class="form__status" role="status" aria-live="polite"></p>
