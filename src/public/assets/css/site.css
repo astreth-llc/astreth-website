@@ -794,3 +794,10 @@ body.menu-open { overflow: hidden; }
 
 .theme-gray .roadmap__step { background: var(--white); }
 .tier-note--small, .donate__fineprint { margin-top: 12px; font-size: var(--fs-small); color: var(--muted); text-align: center; }
+
+/* Back Pebbler tiers on purple, deepening at the top and blending into "Start the Ripple" below */
+.tiers-section { background: linear-gradient(180deg, #2a115e 0%, var(--dark-accent) 100%); }
+.tiers-section .tier { border-color: transparent; color: var(--black); }
+.tiers-section .tier--featured { border-color: var(--accent); }
+.tiers-section .section-intro a, .tiers-section .tier-note a { color: var(--white); }
+.tiers-section .tier-note--small { color: #e6def5; }
