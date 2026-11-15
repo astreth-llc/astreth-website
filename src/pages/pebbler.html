@@ -16,7 +16,29 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <a class="button button--large button--tertiary" href="{{ site.links.discord }}" target="_blank" rel="noopener">Join our Discord</a>
       </p>
     </div>
-    <img class="campaign-hero__art" src="/assets/img/pebbler-kickstarter-banner.webp" alt="Two cartoon penguins leaning out of smartphones, one handing the other a pebble, under the tagline “Social Media That Puts People First”" width="1600" height="900">
+    <video class="campaign-hero__art campaign-hero__video" controls playsinline preload="none" poster="/assets/img/pebbler-kickstarter-banner.webp" width="1280" height="720" aria-label="Pebbler campaign video, 1 minute 47 seconds">
+      <source src="/assets/video/pebbler-campaign.mp4" type="video/mp4">
+      <a href="/assets/video/pebbler-campaign.mp4">Watch the Pebbler campaign video</a>
+    </video>
+  </div>
+</section>
+
+<section class="back-strip theme-gray" aria-labelledby="quick-back-title">
+  <div class="container back-strip__inner">
+    <div class="back-strip__text">
+      <h2 class="back-strip__title" id="quick-back-title">Back Pebbler today</h2>
+      <p>Our next micro-goal: a lawyer’s review of our co-op contracts, so we can start offering co-op membership.</p>
+    </div>
+    <div>
+      <ul class="back-strip__tiers">
+        <li><a href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Founding+Pebbler+tier+%28%245%29" target="_blank" rel="noopener"><strong>$5</strong> <span>Founding Pebbler</span></a></li>
+        <li><a href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Pebble+Builder+tier+%28%2420%29" target="_blank" rel="noopener"><strong>$20</strong> <span>Pebble Builder</span></a></li>
+        <li><a href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Astreth+Ally+tier+%28%2450%29" target="_blank" rel="noopener"><strong>$50</strong> <span>Astreth Ally</span></a></li>
+        <li><a href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Ripple+Starter+tier+%28%24100%29" target="_blank" rel="noopener"><strong>$100</strong> <span>Ripple Starter</span></a></li>
+        <li><a href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Creator+Bundle+tier+%28%24150%29" target="_blank" rel="noopener"><strong>$150</strong> <span>Creator Bundle</span></a></li>
+      </ul>
+      <p class="back-strip__more"><a href="#back-pebbler">See what each tier includes</a></p>
+    </div>
   </div>
 </section>
 
@@ -27,7 +49,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
     <p>Since then, our community has spent over a year refining the mission, values, and foundation needed to take on a challenge this big, with long-term thinking and care.</p>
     <p>Our app name, Pebbler, is inspired by the penguin ritual of gifting pebbles: a symbol of care, connection, and belonging. When our community learned about “pebbling” (the act of sharing moments to show you’re thinking of someone), the name won a community poll with 93% support. It already felt like home!</p>
     <p>Now we have a complete proof-of-concept design and a dedicated team of volunteer developers ready to start building. Every feature has been shaped with community feedback and built to grow stronger over time.</p>
-    <p class="campaign-note">Our Kickstarter campaign ended in January 2026, and <a href="/blog/post-kickstarter-were-still-crowdfunding">we’re still crowdfunding</a> right here.</p>
+    <p class="campaign-note">Our Kickstarter campaign ended in January 2026. Our community asked for a way to keep giving and to follow our progress toward the goal, so we made our own page to do just that! <a href="/blog/post-kickstarter-were-still-crowdfunding">Read the story</a>.</p>
   </div>
 </section>
 
@@ -150,7 +172,74 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
   </div>
 </section>
 
-<section class="section theme-white" aria-labelledby="roadmap-title">
+<section class="section theme-white" aria-labelledby="timeline-title">
+  <div class="container">
+    <div class="section-intro">
+      <h2 class="section-title" id="timeline-title">Project Timeline</h2>
+      <p>Initial app launch and beyond! Dates are our best estimates and depend on funding.</p>
+    </div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="skip-pebble" viewBox="0 0 72 72">
+        <ellipse cx="36" cy="51" rx="31" ry="10" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+        <ellipse cx="36" cy="51" rx="22" ry="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M17 38c0-11 9-20 21-20 10 0 17 7 17 16 0 10-9 17-20 17-10 0-18-5-18-13z" fill="#5c5757"/>
+        <path d="M26 28c4-4 9-5 14-4" fill="none" stroke="#fff" stroke-opacity="0.75" stroke-width="2.5" stroke-linecap="round"/>
+      </symbol>
+    </svg>
+    <ol class="skip-timeline">
+      <li class="skip">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">December 2026</p>
+          <h3 class="skip__title">Begin coding Pebbler v1.0</h3>
+          <p class="skip__text">Core infrastructure, streams, profiles, and reputation foundations</p>
+        </div>
+      </li>
+      <li class="skip">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">May 2027</p>
+          <h3 class="skip__title">Tighten core features</h3>
+          <p class="skip__text">Internal builds running; major systems connected</p>
+        </div>
+      </li>
+      <li class="skip">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">August 2027</p>
+          <h3 class="skip__title">Internal testing &amp; stabilization</h3>
+          <p class="skip__text">Bug squashing, performance tuning, security reviews</p>
+        </div>
+      </li>
+      <li class="skip">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">November 2027</p>
+          <h3 class="skip__title">Closed beta testing begins</h3>
+          <p class="skip__text">Invite-only testing with community members and early supporters</p>
+        </div>
+      </li>
+      <li class="skip">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">April 2028</p>
+          <h3 class="skip__title">Early access launch!</h3>
+          <p class="skip__text">Expanded access for backers and early adopters</p>
+        </div>
+      </li>
+      <li class="skip skip--launch">
+        <svg class="skip__pebble" aria-hidden="true" focusable="false"><use href="#skip-pebble"/></svg>
+        <div class="skip__body">
+          <p class="skip__date">June 2028</p>
+          <h3 class="skip__title">Pebbler v1.0 public launch! (U.S.)</h3>
+          <p class="skip__text">Invite-only enrollment for new members</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section theme-gray" aria-labelledby="roadmap-title">
   <div class="container">
     <div class="section-intro">
       <h2 class="section-title" id="roadmap-title">Future App Releases</h2>
@@ -199,7 +288,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
   <div class="container">
     <div class="section-intro">
       <h2 class="section-title section-title--purple" id="tiers-title">Back Pebbler</h2>
-      <p>Coding gets expensive, and that’s where you come in. Pick a tier, give that amount through PayPal, and add the tier name in the PayPal note so we can match your reward to you. Rewards arrive when Pebbler launches.</p>
+      <p>Coding gets expensive, and that’s where you come in. Pick a tier and give that amount through PayPal. Your tier name is filled in for you on the PayPal page, so we can match your reward to you. Rewards arrive when Pebbler launches; see the <a href="#timeline-title">project timeline</a> for our current dates.</p>
     </div>
     <ul class="tier-grid">
       <li class="tier">
@@ -208,7 +297,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <p class="tier__price">$5</p>
         <p>Your name listed on the “Backer Wall” on the Astreth website.</p>
         <p class="tier__codes">5 invite codes</p>
-        <a class="button button--block" href="{{ site.links.donate }}" target="_blank" rel="noopener">Give $5 <span class="visually-hidden">as a Founding Pebbler</span></a>
+        <a class="button button--block" href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Founding+Pebbler+tier+%28%245%29" target="_blank" rel="noopener">Give $5 <span class="visually-hidden">as a Founding Pebbler</span></a>
       </li>
       <li class="tier">
         <img class="tier__art" src="/assets/img/pebbler-reward-pebble.webp" alt="A grey pebble with “Your Name” written on it." width="600" height="376" loading="lazy">
@@ -216,7 +305,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <p class="tier__price">$20</p>
         <p>Your name on a pebble placed proudly in the “Backer Wall” in the Pebbler app.</p>
         <p class="tier__codes">10 invite codes</p>
-        <a class="button button--block" href="{{ site.links.donate }}" target="_blank" rel="noopener">Give $20 <span class="visually-hidden">as a Pebble Builder</span></a>
+        <a class="button button--block" href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Pebble+Builder+tier+%28%2420%29" target="_blank" rel="noopener">Give $20 <span class="visually-hidden">as a Pebble Builder</span></a>
       </li>
       <li class="tier">
         <img class="tier__art" src="/assets/img/pebbler-reward-chibi.webp" alt="The Astreth Chibi badge: a smiling cartoon face with magenta, purple and teal hair." width="500" height="333" loading="lazy">
@@ -224,7 +313,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <p class="tier__price">$50</p>
         <p>Show you were part of the Astreth effort with an exclusive Astreth Chibi badge on your Pebbler account.</p>
         <p class="tier__codes">20 invite codes</p>
-        <a class="button button--block" href="{{ site.links.donate }}" target="_blank" rel="noopener">Give $50 <span class="visually-hidden">as an Astreth Ally</span></a>
+        <a class="button button--block" href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Astreth+Ally+tier+%28%2450%29" target="_blank" rel="noopener">Give $50 <span class="visually-hidden">as an Astreth Ally</span></a>
       </li>
       <li class="tier">
         <img class="tier__art" src="/assets/img/pebbler-reward-ripple-starter.webp" alt="The Ripple Starter badge: a blue shield showing a pebble above rippling water." width="600" height="399" loading="lazy">
@@ -232,7 +321,7 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <p class="tier__price">$100</p>
         <p>Earn the exclusive “Ripple Starter” badge and show the world how much you believed in us from the beginning.</p>
         <p class="tier__codes">50 invite codes</p>
-        <a class="button button--block" href="{{ site.links.donate }}" target="_blank" rel="noopener">Give $100 <span class="visually-hidden">as a Ripple Starter</span></a>
+        <a class="button button--block" href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Ripple+Starter+tier+%28%24100%29" target="_blank" rel="noopener">Give $100 <span class="visually-hidden">as a Ripple Starter</span></a>
       </li>
       <li class="tier tier--featured">
         <img class="tier__art" src="/assets/img/pebbler-reward-pippin.webp" alt="The Pippin the Pebbler Penguin badge: a full-body penguin in black and white." width="500" height="333" loading="lazy">
@@ -240,10 +329,11 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <p class="tier__price">$150</p>
         <p>Everything in the tiers above, plus be among the first invited to create your Pebbler account, and a full-body “Pippin the Pebbler Penguin” badge.</p>
         <p class="tier__codes">100 invite codes for your entire waddle</p>
-        <a class="button button--block" href="{{ site.links.donate }}" target="_blank" rel="noopener">Give $150 <span class="visually-hidden">for the Creator Bundle</span></a>
+        <a class="button button--block" href="{{ site.links.donate }}&amp;item_name=Pebbler+backer%3A+Creator+Bundle+tier+%28%24150%29" target="_blank" rel="noopener">Give $150 <span class="visually-hidden">for the Creator Bundle</span></a>
       </li>
     </ul>
     <p class="tier-note">Prefer to give a different amount? Every dollar helps. <a href="/donate">Donate any amount</a>.</p>
+    <p class="tier-note tier-note--small">Astreth is an LLC, not a registered charity, so contributions are not tax-deductible.</p>
   </div>
 </section>
 
