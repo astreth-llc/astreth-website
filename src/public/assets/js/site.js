@@ -38,6 +38,21 @@
     video.pause();
   }
 
+  // ----- Campaign video: show only a play button until the visitor starts it -----
+  var campaignVideo = document.querySelector('[data-campaign-video]');
+  var campaignPlay = document.querySelector('[data-campaign-play]');
+  if (campaignVideo && campaignPlay) {
+    campaignVideo.controls = false;
+    campaignPlay.hidden = false;
+    campaignPlay.addEventListener('click', function () {
+      campaignPlay.hidden = true;
+      campaignVideo.controls = true;
+      var started = campaignVideo.play();
+      if (started && started.catch) started.catch(function () {});
+      campaignVideo.focus();
+    });
+  }
+
   // ----- Forms: send to the form service without leaving the page -----
   var forms = document.querySelectorAll('form[data-ajax-form]');
   Array.prototype.forEach.call(forms, function (form) {
