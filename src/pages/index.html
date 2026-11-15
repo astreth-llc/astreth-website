@@ -10,16 +10,31 @@ description: "Astreth is a community of volunteers dedicated working to build a 
     <img class="hero__sparkle hero__sparkle--b" src="/assets/img/sparkles-white.webp" alt="" width="900" height="900">
   </div>
   {{{ hero_media }}}
-  <div class="container hero__inner">
-    <h1 class="hero__title" id="hero-title">People over profit…</h1>
-    <figure class="hero-quote hero-quote--one">
-      <blockquote><p>“...why don’t we just create our own platform?”</p></blockquote>
-      <figcaption>— TikToker @Tallgirl6234</figcaption>
-    </figure>
-    <figure class="hero-quote hero-quote--two">
-      <blockquote><p>“Where we put people over profit.”</p></blockquote>
-      <figcaption>— @Brave.Rogue</figcaption>
-    </figure>
+  <div class="container hero__inner hero__inner--split">
+    <div class="hero__text">
+      <h1 class="hero__title" id="hero-title">People over profit…</h1>
+      <p class="hero__lead">We’re a volunteer community building Pebbler, a social app that puts people first.</p>
+      <p class="hero__actions">
+        <a class="button button--large" href="/pebbler#back-pebbler">Back Pebbler</a>
+        <a class="button button--large button--tertiary" href="{{ site.links.discord }}" target="_blank" rel="noopener">Join our Discord</a>
+      </p>
+      <p class="hero__raised"><strong>${{ site.campaign.raised }}</strong> raised so far</p>
+    </div>
+    <div class="hero__media">
+      <div class="campaign-video">
+        <video class="campaign-hero__art campaign-hero__video" controls playsinline preload="none" poster="/assets/img/pebbler-kickstarter-banner.webp" width="1280" height="720" aria-label="Pebbler campaign video, 1 minute 47 seconds" data-campaign-video>
+          <source src="/assets/video/pebbler-campaign.mp4" type="video/mp4">
+          <a href="/assets/video/pebbler-campaign.mp4">Watch the Pebbler campaign video</a>
+        </video>
+        <button class="campaign-video__play" type="button" aria-label="Play the Pebbler campaign video" data-campaign-play hidden>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <figure class="hero-quote">
+        <blockquote><p>“...why don’t we just create our own platform?”</p></blockquote>
+        <figcaption>— TikToker @Tallgirl6234</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
