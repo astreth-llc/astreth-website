@@ -15,9 +15,9 @@
   },
 
   "forms": {
-    "_help": "Paste a Formspree form URL (https://formspree.io/f/xxxxxxxx) into each field to switch the form on. Leave empty to show the email/Discord fallback instead.",
+    "_help": "Paste a form URL into each field to switch the form on: a Formspree form (https://formspree.io/f/xxxxxxxx) for contact, a Formspree or Kit form (https://app.kit.com/forms/1234567/subscriptions) for the newsletter. Leave empty to show the email/Discord fallback instead.",
     "contact_endpoint": "",
-    "newsletter_endpoint": ""
+    "newsletter_endpoint": "https://app.kit.com/forms/10191990/subscriptions"
   },
 
   "analytics": {
