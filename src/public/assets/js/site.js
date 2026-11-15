@@ -71,9 +71,20 @@
       fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (response) {
           if (response.ok) {
-            form.reset();
-            setStatus(isNewsletter ? 'Thanks for signing up!' : 'Thank you! Your message has been sent.', 'is-success');
-            return;
+            return response.json().catch(function () { return {}; }).then(function (body) {
+              // Kit answers 200 even when it turns a sign-up down, and says so in the body.
+              if (body && body.status === 'failed') {
+                var messages = body.errors && body.errors.messages;
+                throw new Error(messages && messages.length ? messages.join(', ') : 'The form service returned an error.');
+              }
+              // Kit sometimes asks the visitor to pass a quick check on its own page first.
+              if (body && body.status === 'quarantined' && /^https:\/\/([a-z0-9-]+\.)*kit\.com\//.test(body.url || '')) {
+                window.location.href = body.url;
+                return;
+              }
+              form.reset();
+              setStatus(isNewsletter ? 'Thanks for signing up!' : 'Thank you! Your message has been sent.', 'is-success');
+            });
           }
           return response.json().catch(function () { return {}; }).then(function (body) {
             var detail = body && body.errors ? body.errors.map(function (e) { return e.message; }).join(', ') : '';
