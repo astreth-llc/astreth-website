@@ -20,6 +20,11 @@
     "newsletter_endpoint": "https://app.kit.com/forms/10191990/subscriptions"
   },
 
+  "campaign": {
+    "_help": "Amount raised so far, shown on the homepage and the Pebbler page. Type it with commas and no dollar sign, e.g. 1,395.",
+    "raised": "1,395"
+  },
+
   "analytics": {
     "_help": "Google Analytics 4 measurement ID. Leave empty to turn Google Analytics off (and update the privacy policy).",
     "ga4_id": "G-KM2FDC2E1W"
