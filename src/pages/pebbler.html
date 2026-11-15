@@ -16,10 +16,15 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
         <a class="button button--large button--tertiary" href="{{ site.links.discord }}" target="_blank" rel="noopener">Join our Discord</a>
       </p>
     </div>
-    <video class="campaign-hero__art campaign-hero__video" controls playsinline preload="none" poster="/assets/img/pebbler-kickstarter-banner.webp" width="1280" height="720" aria-label="Pebbler campaign video, 1 minute 47 seconds">
-      <source src="/assets/video/pebbler-campaign.mp4" type="video/mp4">
-      <a href="/assets/video/pebbler-campaign.mp4">Watch the Pebbler campaign video</a>
-    </video>
+    <div class="campaign-video">
+      <video class="campaign-hero__art campaign-hero__video" controls playsinline preload="none" poster="/assets/img/pebbler-kickstarter-banner.webp" width="1280" height="720" aria-label="Pebbler campaign video, 1 minute 47 seconds" data-campaign-video>
+        <source src="/assets/video/pebbler-campaign.mp4" type="video/mp4">
+        <a href="/assets/video/pebbler-campaign.mp4">Watch the Pebbler campaign video</a>
+      </video>
+      <button class="campaign-video__play" type="button" aria-label="Play the Pebbler campaign video" data-campaign-play hidden>
+        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -27,7 +32,8 @@ share_image_alt: "Pebbler banner: two cartoon penguins leaning out of smartphone
   <div class="container back-strip__inner">
     <div class="back-strip__text">
       <h2 class="back-strip__title" id="quick-back-title">Back Pebbler today</h2>
-      <p>Our next micro-goal: a lawyer’s review of our co-op contracts, so we can start offering co-op membership.</p>
+      <p class="back-strip__raised"><strong>$1,395</strong> raised so far</p>
+      <p>Each year we set aside the minimum we need for basic business expenses, fees, and taxes. Everything above that goes to our next micro-goal: a lawyer’s review of our co-op contracts, so we can start offering co-op membership.</p>
     </div>
     <div>
       <ul class="back-strip__tiers">
