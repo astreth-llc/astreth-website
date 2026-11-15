@@ -53,6 +53,33 @@
     });
   }
 
+  // ----- Long pages: mark the current section in the page menu, and show a way back up -----
+  var pageNav = document.querySelector('[data-page-nav]');
+  if (pageNav && 'IntersectionObserver' in window) {
+    var pairs = [];
+    Array.prototype.forEach.call(pageNav.querySelectorAll('a[href^="#"]'), function (link) {
+      var target = document.getElementById(link.getAttribute('href').slice(1));
+      var section = target && (target.closest('section') || target);
+      if (section) pairs.push({ section: section, link: link });
+    });
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        pairs.forEach(function (pair) {
+          if (pair.section === entry.target) pair.link.setAttribute('aria-current', 'true');
+          else pair.link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    pairs.forEach(function (pair) { sectionObserver.observe(pair.section); });
+  }
+  var toTop = document.querySelector('[data-to-top]');
+  if (toTop) {
+    var showToTop = function () { toTop.hidden = window.scrollY < 700; };
+    window.addEventListener('scroll', showToTop, { passive: true });
+    showToTop();
+  }
+
   // ----- Forms: send to the form service without leaving the page -----
   var forms = document.querySelectorAll('form[data-ajax-form]');
   Array.prototype.forEach.call(forms, function (form) {
