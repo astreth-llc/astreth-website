@@ -80,6 +80,19 @@
     showToTop();
   }
 
+  // ----- Arriving on a link to a section: line up again once images have loaded and changed the page height -----
+  if (window.location.hash.length > 1) {
+    var visitorMoved = false;
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (type) {
+      window.addEventListener(type, function () { visitorMoved = true; }, { passive: true, once: true });
+    });
+    window.addEventListener('load', function () {
+      if (visitorMoved) return;
+      var arrivedAt = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (arrivedAt) arrivedAt.scrollIntoView({ behavior: 'auto' });
+    });
+  }
+
   // ----- Forms: send to the form service without leaving the page -----
   var forms = document.querySelectorAll('form[data-ajax-form]');
   Array.prototype.forEach.call(forms, function (form) {
