@@ -110,9 +110,13 @@ From time to time, the Company may contact you via email for the purpose of prov
 
 If you would like to stop receiving marketing or promotional communications via email from the Company, you may opt out of such communications by clicking on the unsubscribe button, or replying “STOP” to any text communications.
 
+Our email newsletter is sent using Kit ([kit.com](https://kit.com)). If you sign up for the newsletter, your email address, and your name if you gave it, is stored with Kit so that we can send you updates. Kit may record whether you open an email or click a link in it. You can unsubscribe at any time using the link at the bottom of every newsletter. Kit handles this information under its own [privacy policy](https://kit.com/privacy).
+
 ## External Data Storage Sites
 
 We may store your data on servers provided by third-party hosting vendors with whom we have contracted.
+
+Our website is hosted by Cloudflare, Inc. When you visit the site, Cloudflare processes technical information such as your IP address, browser type, and the pages you request, in order to deliver the site and protect it from abuse. Cloudflare handles this information under its own [privacy policy](https://www.cloudflare.com/privacypolicy/).
 
 ## Changes to This Statement
 
@@ -129,4 +133,5 @@ Vancouver, Washington 98684
 Email address: [Help@Astreth.com](mailto:Help@Astreth.com)\
 Phone Number: 234.278.7384
 
-*Effective as of September 01, 2024*
+*Effective as of September 01, 2024*\
+*Last updated November 14, 2026*
