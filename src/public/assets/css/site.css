@@ -750,6 +750,11 @@ body.menu-open { overflow: hidden; }
 
 /* Pebbler campaign page: video, the ask after the hero, and the project timeline */
 .campaign-hero__video { display: block; height: auto; aspect-ratio: 16 / 9; background: #000; object-fit: cover; }
+.campaign-video { position: relative; }
+.campaign-video__play { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 84px; height: 84px; padding: 0 0 0 4px; border: 0; border-radius: 50%; background: var(--accent); color: var(--white); cursor: pointer; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); transition: background 0.15s ease, transform 0.15s ease; }
+.campaign-video__play:hover { background: var(--accent-dark); transform: translate(-50%, -50%) scale(1.06); }
+.campaign-video__play[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .campaign-video__play { transition: none; } }
 
 .back-strip { padding-block: clamp(28px, 4vw, 48px); border-bottom: 1px solid var(--line); }
 .back-strip__inner { display: grid; gap: 20px 48px; align-items: center; }
