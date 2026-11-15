@@ -813,6 +813,7 @@ body.menu-open { overflow: hidden; }
 .page-nav__cta { flex: none; padding: 0.6em 1.1em; font-size: 0.95rem; }
 .section-title, #back-pebbler { scroll-margin-top: 84px; }
 
-.to-top { position: fixed; right: 20px; bottom: 92px; z-index: 20; display: grid; place-items: center; width: 46px; height: 46px; border: 2px solid var(--white); border-radius: 50%; background: var(--dark-accent); color: var(--white); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); }
+/* Sits in line with the accessibility button (44px, 6px from the right, 13px from the bottom), just to its left. */
+.to-top { position: fixed; right: 60px; bottom: 13px; z-index: 20; display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--white); border-radius: 50%; background: var(--dark-accent); color: var(--white); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); }
 .to-top:hover { background: var(--accent); }
 .to-top[hidden] { display: none; }
