@@ -277,52 +277,143 @@ function newsletterForm(site) {
 }
 
 // ----- Crowdfunding numbers (src/site.json → "campaign") -----
-// raised is the total collected. If reserve_percent and/or reserve_fixed are set, that share is
-// held back for taxes and basic business expenses, and the rest counts toward the next micro-goal.
+// raised is the total collected. tax_percent of it is set aside for taxes. What is left pays for the
+// goals in order (first this year's business expenses, then each micro-goal), one after the other.
+const CHART_COLORS = {
+  // Fixed colour per category, shared by both charts, checked for colour-blind separation.
+  micro: '#6250d6', taxes: '#1baf7a', margin: '#eb6834', fees: '#2a78d6', business: '#eda100', marketing: '#e87ba4',
+};
+const CHART_ORDER = ['#6250d6', '#1baf7a', '#eb6834', '#2a78d6', '#eda100', '#e87ba4'];
+
 function campaignNumbers(site) {
   const c = site.campaign || {};
   const num = (value) => Number(String(value == null ? '' : value).replace(/[^0-9.]/g, '')) || 0;
   const money = (value) => Math.round(value).toLocaleString('en-US');
-  const raised = num(c.raised);
-  const goal = num(c.goal_amount);
-  const percent = c.reserve_percent == null || c.reserve_percent === '' ? null : num(c.reserve_percent);
-  const fixed = num(c.reserve_fixed);
-  const hasReserve = percent !== null || fixed > 0;
-  if (percent !== null && percent > 100) warn(`src/site.json: campaign.reserve_percent is ${percent}; it should be between 0 and 100`);
-  // Whole dollars, and the two parts always add back up to the total shown.
-  const total = Math.round(raised);
-  const reserved = Math.min(total, Math.round(raised * (percent || 0) / 100 + fixed));
-  const toward = total - reserved;
-  return {
-    raised: money(total), goal: money(goal), reserved: money(reserved), toward: money(toward),
-    towardValue: Math.round(toward), goalValue: Math.round(goal),
-    percent, hasReserve, showProgress: hasReserve && goal > 0,
-    barWidth: goal > 0 ? Math.min(100, Math.round((toward / goal) * 1000) / 10) : 0,
-    asOf: c.as_of || '', goalName: c.goal_name || 'our next micro-goal', goalDescription: c.goal_description || '',
-  };
+  const total = Math.round(num(c.raised));
+  const taxPercent = num(c.tax_percent);
+  if (taxPercent > 100) warn(`src/site.json: campaign.tax_percent is ${taxPercent}; it should be between 0 and 100`);
+  const taxes = Math.min(total, Math.round(total * taxPercent / 100));
+  let left = total - taxes;
+  const goals = (Array.isArray(c.goals) ? c.goals : []).map((goal) => {
+    const amount = Math.round(num(goal.amount));
+    const funded = Math.min(amount, left);
+    left -= funded;
+    return {
+      name: goal.name || goal.title || 'our next micro-goal', title: goal.title || goal.name || 'Micro-goal',
+      description: goal.description || '', kind: goal.kind || 'micro',
+      amount, funded, met: amount > 0 && funded >= amount,
+      width: amount > 0 ? Math.min(100, Math.round((funded / amount) * 1000) / 10) : 0,
+    };
+  });
+  const current = goals.find((goal) => !goal.met) || null;
+  return { money, total, taxPercent, taxes, goals, current, unassigned: left, asOf: c.as_of || '' };
+}
+
+function goalBar(goal) {
+  return `<div class="goal-bar" role="progressbar" aria-label="Progress toward ${escapeHtml(goal.name)}" aria-valuemin="0" aria-valuemax="${goal.amount}" aria-valuenow="${goal.funded}"><span style="width: ${goal.width}%"></span></div>`;
 }
 
 function campaignHeroLine(site) {
   const n = campaignNumbers(site);
   const asOf = n.asOf ? ` <span class="hero__asof">as of ${escapeHtml(n.asOf)}</span>` : '';
-  const text = n.showProgress
-    ? `<strong>$${n.toward}</strong> of $${n.goal} toward ${escapeHtml(n.goalName)}`
-    : `<strong>$${n.raised}</strong> raised so far`;
+  const text = n.current && n.current.funded > 0
+    ? `<strong>$${n.money(n.current.funded)}</strong> of $${n.money(n.current.amount)} toward ${escapeHtml(n.current.name)}`
+    : `<strong>$${n.money(n.total)}</strong> raised so far`;
   return `<p class="hero__raised"><a href="/pebbler#funding">${text}</a>${asOf}</p>`;
 }
 
 function campaignSummary(site) {
   const n = campaignNumbers(site);
   const asOf = n.asOf ? ` <span class="back-strip__asof">as of ${escapeHtml(n.asOf)}</span>` : '';
-  const goalText = `$${n.goal} for ${escapeHtml(n.goalDescription || n.goalName)}`;
-  if (!n.showProgress) {
-    return `<p class="back-strip__raised"><strong>$${n.raised}</strong> raised so far${asOf}</p>
-      <p>Each year we set aside the minimum we need for basic business expenses, fees, and taxes. Everything above that goes to our next micro-goal: ${goalText}.</p>`;
+  const more = ' <a href="#budget-title">See the full breakdown</a>.';
+  if (!n.current) {
+    return `<p class="back-strip__raised"><strong>$${n.money(n.total)}</strong> raised so far${asOf}</p>
+      <p>Every goal we have set so far is funded. Thank you!${more}</p>`;
   }
-  const share = n.percent ? ` (${n.percent}%)` : '';
-  return `<p class="back-strip__raised"><strong>$${n.toward}</strong> of $${n.goal} toward ${escapeHtml(n.goalName)}${asOf}</p>
-      <div class="goal-bar" role="progressbar" aria-label="Progress toward ${escapeHtml(n.goalName)}" aria-valuemin="0" aria-valuemax="${n.goalValue}" aria-valuenow="${n.towardValue}"><span style="width: ${n.barWidth}%"></span></div>
-      <p>We’ve raised $${n.raised} in total. We set aside $${n.reserved}${share} for taxes and basic business expenses, and everything else goes to our next micro-goal: ${goalText}.</p>`;
+  const covered = n.goals.filter((goal) => goal.met).map((goal) => `covering ${escapeHtml(goal.name)} ($${n.money(goal.amount)})`);
+  const before = [n.taxes > 0 ? `setting aside ${n.taxPercent}% for taxes ($${n.money(n.taxes)})` : '', ...covered].filter(Boolean);
+  const lead = before.length ? `After ${before.join(' and ')}, everything else` : 'Everything';
+  const what = n.current.description || n.current.name;
+  return `<p class="back-strip__raised"><strong>$${n.money(n.current.funded)}</strong> of $${n.money(n.current.amount)} toward ${escapeHtml(n.current.name)}${asOf}</p>
+      ${goalBar(n.current)}
+      <p>We’ve raised $${n.money(n.total)} in total. ${lead} goes to our next micro-goal: ${escapeHtml(what)}.${more}</p>`;
+}
+
+// A donut chart drawn at build time: one arc per part, a small gap between arcs, the total in the middle.
+function donutChart(parts, centerLabel, centerValue, description) {
+  const total = parts.reduce((sum, part) => sum + part.value, 0) || 1;
+  let start = 0;
+  const arcs = parts.filter((part) => part.value > 0).map((part) => {
+    const share = (part.value / total) * 100;
+    const length = Math.max(0.4, share - 0.7);
+    const arc = `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="${part.color}" stroke-width="6" stroke-dasharray="${length.toFixed(2)} ${(100 - length).toFixed(2)}" stroke-dashoffset="${(25 - start).toFixed(2)}"><title>${escapeHtml(part.label)}: $${Math.round(part.value).toLocaleString('en-US')} (${Math.round(share)}%)</title></circle>`;
+    start += share;
+    return arc;
+  }).join('\n          ');
+  return `<svg class="donut" viewBox="0 0 42 42" role="img" aria-label="${escapeHtml(description)}">
+          ${arcs}
+          <text x="21" y="19.5" text-anchor="middle" class="donut__label">${escapeHtml(centerLabel)}</text>
+          <text x="21" y="24.8" text-anchor="middle" class="donut__value">${escapeHtml(centerValue)}</text>
+        </svg>`;
+}
+
+function chartLegend(parts) {
+  const total = parts.reduce((sum, part) => sum + part.value, 0) || 1;
+  const rows = parts.map((part) => `<tr><th scope="row"><span class="legend__swatch" style="background: ${part.color}"></span>${escapeHtml(part.label)}</th><td>$${Math.round(part.value).toLocaleString('en-US')}</td><td>${Math.round((part.value / total) * 100)}%</td></tr>`).join('\n          ');
+  return `<table class="legend">
+          <thead class="visually-hidden"><tr><th scope="col">Category</th><th scope="col">Amount</th><th scope="col">Share</th></tr></thead>
+          <tbody>
+          ${rows}
+          </tbody>
+        </table>`;
+}
+
+function campaignBreakdown(site) {
+  const c = site.campaign || {};
+  const n = campaignNumbers(site);
+  const num = (value) => Number(String(value == null ? '' : value).replace(/[^0-9.]/g, '')) || 0;
+
+  const raisedParts = [
+    { label: `Taxes (${n.taxPercent}% set aside)`, value: n.taxes, color: CHART_COLORS.taxes },
+    ...n.goals.filter((goal) => goal.funded > 0).map((goal) => ({ label: goal.title, value: goal.funded, color: CHART_COLORS[goal.kind] || CHART_COLORS.micro })),
+    ...(n.unassigned > 0 ? [{ label: 'Not yet assigned', value: n.unassigned, color: CHART_COLORS.fees }] : []),
+  ].filter((part) => part.value > 0);
+
+  const goalItems = n.goals.map((goal) => `<li class="goal-list__item${goal.met ? ' is-met' : ''}">
+            <p class="goal-list__name">${goal.met ? '<span class="goal-list__check" aria-hidden="true">✓</span>' : ''}${escapeHtml(goal.title)} <span class="goal-list__amount">$${n.money(goal.funded)} of $${n.money(goal.amount)}${goal.met ? ' · reached' : ''}</span></p>
+            ${goalBar(goal)}
+          </li>`).join('\n          ');
+
+  const budget = (Array.isArray(c.budget) ? c.budget : []).map((item, index) => ({
+    label: item.name, value: num(item.amount), color: CHART_COLORS[item.kind] || CHART_ORDER[index % CHART_ORDER.length],
+  })).filter((part) => part.value > 0);
+  const budgetTotal = budget.reduce((sum, part) => sum + part.value, 0);
+  const asOf = n.asOf ? `, as of ${escapeHtml(n.asOf)}` : '';
+
+  const planCard = budget.length ? `
+      <div class="money-card">
+        <h3>The full plan</h3>
+        <p class="money-card__note">Our projected budget to build and launch Pebbler v1.0. These figures may change as we learn more.</p>
+        <div class="money-card__chart">
+        ${donutChart(budget, 'Budget', `$${n.money(budgetTotal)}`, `Donut chart of the projected budget, $${n.money(budgetTotal)} in total. The table beside it lists every amount.`)}
+        ${chartLegend(budget)}
+        </div>
+      </div>` : '';
+
+  return `<div class="money-grid">
+      <div class="money-card">
+        <h3>Raised so far</h3>
+        <p class="money-card__note">Where every dollar we have received has gone${asOf}.</p>
+        <div class="money-card__chart">
+        ${donutChart(raisedParts, 'Raised', `$${n.money(n.total)}`, `Donut chart of the $${n.money(n.total)} raised so far. The table beside it lists every amount.`)}
+        ${chartLegend(raisedParts)}
+        </div>
+        <h4 class="goal-list__title">Our goals, in order</h4>
+        <ol class="goal-list">
+          ${goalItems}
+        </ol>
+      </div>${planCard}
+    </div>`;
 }
 
 function heroMedia(site) {
@@ -551,6 +642,7 @@ async function main() {
     hero_media: heroMedia(site),
     campaign_hero_line: campaignHeroLine(site),
     campaign_summary: campaignSummary(site),
+    campaign_breakdown: campaignBreakdown(site),
     youtube_intro: youtubeEmbed(site),
     contact_form: contactForm(site),
     newsletter_form: newsletterForm(site),
