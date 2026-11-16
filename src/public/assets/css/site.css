@@ -864,7 +864,7 @@ body.menu-open { overflow: hidden; }
 .goal-list .goal-bar { max-width: none; margin: 0; }
 @media (prefers-reduced-motion: reduce) { .donut circle { transition: none; } }
 
-/* Bright teal button for dark backgrounds (homepage hero), with dark text so it stays readable */
-.button--teal { border-color: var(--teal-on-dark); background: var(--teal-on-dark); color: var(--black); }
-.button--teal:hover { border-color: #63cfc0; background: #63cfc0; color: var(--black); }
+/* Medium green button with white text (homepage hero). #008577 is the lightest this green can go and keep white text at 4.5:1. */
+.button--teal { border-color: #008577; background: #008577; color: var(--white); }
+.button--teal:hover { border-color: var(--light-accent); background: var(--light-accent); color: var(--white); }
 .hero__asof { display: block; margin: 6px 0 0; }
