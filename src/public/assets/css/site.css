@@ -835,3 +835,31 @@ body.menu-open { overflow: hidden; }
 #funding { scroll-margin-top: 60px; }
 .goal-bar { height: 14px; max-width: 34rem; margin: 0 0 0.9em; border-radius: 999px; background: #dcd7d7; overflow: hidden; }
 .goal-bar span { display: block; height: 100%; min-width: 6px; border-radius: 999px; background: var(--light-accent); }
+
+/* Pebbler page: "Where the Money Goes" — two charts, their tables, and the goals in order */
+.back-strip__text a { color: var(--accent); }
+.money-grid { display: grid; gap: clamp(20px, 2.4vw, 32px); max-width: 1180px; margin: 0 auto; }
+@media (min-width: 900px) { .money-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.money-card { min-width: 0; padding: clamp(24px, 2.6vw, 36px); border: 1px solid var(--line); border-radius: var(--card-radius); background: var(--white); }
+.money-card h3 { margin: 0 0 0.3em; font-size: var(--fs-h3); color: var(--dark-accent); }
+.money-card__note { margin: 0 0 1.2em; color: var(--muted); }
+.money-card__chart { display: grid; gap: 20px; align-items: center; }
+@media (min-width: 520px) { .money-card__chart { grid-template-columns: minmax(150px, 200px) minmax(0, 1fr); } }
+.donut { display: block; width: 100%; max-width: 220px; height: auto; margin-inline: auto; transform: none; }
+.donut circle { transition: stroke-width 0.15s ease; }
+.donut circle:hover { stroke-width: 7.4; }
+.donut__label { font-family: var(--font-body); font-size: 2.6px; fill: var(--muted); }
+.donut__value { font-family: var(--font-heading); font-size: 5px; fill: var(--black); }
+.legend { width: 100%; border-collapse: collapse; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.legend th, .legend td { padding: 7px 0; border-bottom: 1px solid var(--line); text-align: left; font-weight: 400; vertical-align: baseline; }
+.legend tr:last-child th, .legend tr:last-child td { border-bottom: 0; }
+.legend td { padding-left: 12px; text-align: right; white-space: nowrap; }
+.legend td:last-child { width: 3.2em; color: var(--muted); }
+.legend__swatch { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border-radius: 3px; }
+.goal-list__title { margin: 1.6em 0 0.6em; font-size: var(--fs-h4); color: var(--dark-accent); }
+.goal-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.goal-list__name { margin: 0 0 6px; font-weight: 500; }
+.goal-list__amount { margin-left: 0.4em; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.goal-list__check { display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; margin-right: 0.4em; border-radius: 50%; background: var(--light-accent); color: var(--white); font-size: 0.8em; }
+.goal-list .goal-bar { max-width: none; margin: 0; }
+@media (prefers-reduced-motion: reduce) { .donut circle { transition: none; } }
