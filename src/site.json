@@ -21,14 +21,28 @@
   },
 
   "campaign": {
-    "_help": "Crowdfunding numbers for the homepage and the Pebbler page. raised: total collected so far. as_of: the month that total was last updated. goal_amount: cost of the next micro-goal. reserve_percent: share of every dollar held back for taxes and business expenses (for example 30), and reserve_fixed: a flat dollar amount held back; set either one and the pages show a progress bar of what is left toward the micro-goal. Leave both empty to show only the total raised. Type amounts with commas and no dollar sign.",
+    "_help": "Crowdfunding numbers for the homepage and the Pebbler page. raised: total collected so far. as_of: the month that total was last updated. tax_percent: share of every dollar set aside for taxes. goals: paid for in the order listed, from whatever is left after taxes; the first unfinished one gets the progress bar. budget: the full project plan shown in the second chart. Type amounts with commas and no dollar sign.",
     "raised": "1,395",
     "as_of": "November 2026",
+    "tax_percent": 18,
     "goal_amount": "2,000",
     "goal_name": "our co-op legal review",
     "goal_description": "a lawyer’s review of our co-op contracts, so we can start offering co-op membership",
     "reserve_percent": "",
-    "reserve_fixed": ""
+    "reserve_fixed": "",
+    "goals": [
+      { "title": "2026 business expenses", "name": "this year’s business expenses", "amount": "500", "kind": "business" },
+      { "title": "Co-op legal review", "name": "our co-op legal review", "amount": "2,000", "kind": "micro",
+        "description": "a lawyer’s review of our co-op contracts, so we can start offering co-op membership" }
+    ],
+    "budget": [
+      { "name": "Research & development", "amount": "30,450", "kind": "micro" },
+      { "name": "Taxes", "amount": "9,000", "kind": "taxes" },
+      { "name": "Margin of error", "amount": "3,270", "kind": "margin" },
+      { "name": "Payment processing fees", "amount": "2,500", "kind": "fees" },
+      { "name": "Business costs", "amount": "1,500", "kind": "business" },
+      { "name": "Marketing", "amount": "750", "kind": "marketing" }
+    ]
   },
 
   "analytics": {
