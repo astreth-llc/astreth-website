@@ -863,3 +863,8 @@ body.menu-open { overflow: hidden; }
 .goal-list__check { display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; margin-right: 0.4em; border-radius: 50%; background: var(--light-accent); color: var(--white); font-size: 0.8em; }
 .goal-list .goal-bar { max-width: none; margin: 0; }
 @media (prefers-reduced-motion: reduce) { .donut circle { transition: none; } }
+
+/* Bright teal button for dark backgrounds (homepage hero), with dark text so it stays readable */
+.button--teal { border-color: var(--teal-on-dark); background: var(--teal-on-dark); color: var(--black); }
+.button--teal:hover { border-color: #63cfc0; background: #63cfc0; color: var(--black); }
+.hero__asof { display: block; margin: 6px 0 0; }
