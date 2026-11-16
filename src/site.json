@@ -25,11 +25,6 @@
     "raised": "1,395",
     "as_of": "November 2026",
     "tax_percent": 18,
-    "goal_amount": "2,000",
-    "goal_name": "our co-op legal review",
-    "goal_description": "a lawyer’s review of our co-op contracts, so we can start offering co-op membership",
-    "reserve_percent": "",
-    "reserve_fixed": "",
     "goals": [
       { "title": "2026 business expenses", "name": "this year’s business expenses", "amount": "500", "kind": "business" },
       { "title": "Co-op legal review", "name": "our co-op legal review", "amount": "2,000", "kind": "micro",
